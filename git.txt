@@ -1,5 +1,9 @@
 每一次不会就
 	git status(会有提示下一步怎么做)
+username huxiaoqia
+password hyx22358uu
+username yuxianghu
+
 1.初始化
 	git init
 
