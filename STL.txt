@@ -1,0 +1,13 @@
+stack::empty()
+	true if the stack is empty; false if the stack is nonempty;
+sort():
+	如果返回是true;则不交换。否则交换位置.
+
+erase(n,npos)
+	从n位置开始删除npos个字符，要是iterator
+size():
+	就是字符数，不包括'\n'
+reverse(s.begin(),s.end());
+	反转到自身的string中
+s1.assign(s.rbegin,s.rend());
+	反转到别的string中
