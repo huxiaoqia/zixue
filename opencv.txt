@@ -1,0 +1,22 @@
+codeblocks中要在build options中：
+	search directories：添加user/local/include/opencv2
+	linker settings:添加user/local/lib/libopencv_...so
+
+
+在shell中
+方法1：建一个CMakeLists.txt的东西，输入下面的东西
+
+cmake_minimum_required(VERSION 2.8)
+project( DisplayImage )
+find_package( OpenCV REQUIRED )
+add_executable( DisplayImage DisplayImage.cpp )
+target_link_libraries( DisplayImage ${OpenCV_LIBS} )
+然后是
+1 cmake .
+2 make
+3 ./a.out
+
+
+方法2：
+g++ `pkg-config --cflags opencv` -o hello hello.cpp `pkg-config --libs opencv`
+给个链接出来，是要告诉你，libs要放在后面啊。。不然会出错滴
