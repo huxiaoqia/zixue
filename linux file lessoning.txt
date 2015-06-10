@@ -1,0 +1,54 @@
+zip -r -p -o *.zip 要压缩文件  +e 加密
+unzip -q shiyanlou.zip -d ziptest
+du -h file 查看文件大小 
+file file 查看文件属性
+
+tar -cf shiyanlou.tar -c表示创建一个 tar 包文件，-f用于指定创建的文件名，注意文件名必须紧跟在-f参数之后
+
+
+
+update mysql.user set password=password("linux")where user = 'root';
+flush privileges;
+
+show databases;用于显示当前存在的数据库；
+create database students;创建一个数据库；
+
+use students 使用students数据库;
+create table information (id int , name text , serial text , address text) 创建了一个表;
+show tables 显示表;
+desc(description) information显示表的具体信息;
+
+insert into information values(1,"wangkang","123","zhonggou");插入一个信息;
+
+
+select * from information;从列表中获取信息;
+select name form information where name=wang;显示姓名为wang的人的姓名;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
