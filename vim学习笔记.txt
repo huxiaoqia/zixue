@@ -1,0 +1,122 @@
+文件的操作：
+vim -o file1 file2 水平分割两个半窗口
+vim -O file1 file2 垂直分割两个半窗口
+
+vim -on file1 file2 水平分割两个半窗口
+vim -On file1 file2 垂直分割两个半窗口其余的都闭置
+ctrl + w + s == :split水平
+ctrl + w + v == :split垂直
+ctrl + w + w 各个窗口切换
+
+
+:tabnew filename 打开文件file
+:tabn 前一个 = gt
+:tabp 后一个 = gT
+:tabdo %s/food/drink/g 把所有文件food 变成drink c表示要确认g表示所有 %s表示所有行 s表示单行
+ns表示n行 n1,n2s表示从n1到n2行
+
+快捷键：
+	ctrl + d是删除字母;
+	ctrl + 
+
+块操作：
+	行：ctrl + v
+	列：V
+	字：v
+列的替换：1,先ctrl + v; 2.再选择字；3.接着按c; 4.再写入要替换的字；5.最后是按ESC;
+复制：选择字后按y键，再到要粘贴的地方按p;
+
+shell 终端命令：
+	
+    CTRL + U - 剪切光标前的内容
+    CTRL + K - 剪切光标至行末的内容
+    CTRL + Y - 粘贴
+    CTRL + E - 移动光标到行末
+    CTRL + A - 移动光标到行首
+    CTRL + h 删除前一个字母
+    ALT + F - 跳向下一个空格
+    ALT + B - 跳回上一个空格
+    CTRL + W - 剪切光标前一个单词
+删除
+ctrl + d      删除光标所在位置上的字符相当于VIM里x或者dl
+ctrl + h      删除光标所在位置前的字符相当于VIM里hx或者dh
+ctrl + k      删除光标后面所有字符相当于VIM里d shift+$
+ctrl + u      删除光标前面所有字符相当于VIM里d shift+^
+ctrl + w      删除光标前一个单词相当于VIM里db
+ctrl + y      恢复ctrl+u上次执行时删除的字符
+ctrl + ?      撤消前一次输入
+alt  + r      撤消前一次动作
+alt  + d     删除光标所在位置的后单词
+
+移动
+ctrl + a      将光标移动到命令行开头相当于VIM里shift+^
+ctrl + e      将光标移动到命令行结尾处相当于VIM里shift+$
+ctrl + f      光标向后移动一个字符相当于VIM里l
+ctrl + b      光标向前移动一个字符相当于VIM里h
+ctrl + 方向键左键    光标移动到前一个单词开头
+ctrl + 方向键右键    光标移动到后一个单词结尾
+ctrl + x       在上次光标所在字符和当前光标所在字符之间跳转
+alt  + f      跳到光标所在位置单词尾部
+
+
+替换
+ctrl + t       将光标当前字符与前面一个字符替换
+alt  + t     交换两个光标当前所处位置单词和光标前一个单词
+alt  + u     把光标当前位置单词变为大写
+alt  + l      把光标当前位置单词变为小写
+alt  + c      把光标当前位置单词头一个字母变为大写
+^oldstr^newstr    替换前一次命令中字符串   
+
+历史命令编辑
+ctrl + p   返回上一次输入命令字符
+ctrl + r       输入单词搜索历史命令
+alt  + p     输入字符查找与字符相接近的历史命令
+alt  + >     返回上一次执行命令
+
+其它
+ctrl + s      锁住终端
+ctrl + q      解锁终端
+ctrl + l        清屏相当于命令clear
+ctrl + c       另起一行
+ctrl + i       类似TAB健补全功能
+ctrl + o      重复执行命令
+alt  + 数字键  操作的次数
+
+
+
+
+Ctrl+F   字符向前     向前移动一个字符
+Ctrl+B   字符向后     向后移动一个字符
+Alt+F    单词向前     向前移动一个单词
+Alt+B    单词向后     向后移动一个单词
+
+
+
+在vim中有滚屏的功能：
+#半屏
+control+U :文本向下滚半屏
+control+D :文本向上滚半屏
+
+#一行
+control+E :文本向上滚动一行
+control+Y :文本向下滚动一行
+
+#翻页
+control+F :文本向上滚动一屏,实际上是整屏减去2行。
+control+b :文本向下滚动一屏，同上。
+
+#位置
+zz 把当前行置为屏幕的中央
+zt 把当前行置于屏幕的顶端
+zb 把当前行置于屏幕的底端
+
+
+
+
+
+diff使用：file1 - file2 = file3
+	diff -u file1 file1 > file3
+
+patch使用：file3 + file2 = file1
+	patch file2 < file3
+或者pathc -R file1 < file3
