@@ -1,0 +1,62 @@
+(一)gcc:
+	-Wall打开所有警告
+	1.预处理
+		gcc -E main.c -o main.i
+		或gcc -E -o main.cpp mian.c
+	2.编译
+		gcc -S mian.i -o main.s
+	3.汇编
+		gcc -c main.s -o main.o
+		或as -o main.o main.s
+	4.链接
+		gcc -o main main.c	
+	链接器:ld(-Wl)
+	ld -dynamic-linker /lib/ld-linux.so.2 /usr/lib/crt1.o
+	/usr/lib/crti.o /usr/lib/crtn.o hello.o -lc -o helloc
+		
+
+	5.binutils开发工具
+	 (1).ar建立库文件
+			静态链接库生成：(ldd 查看库文件的起始地址)
+				1.gcc -c file.c -o file.o
+				2.ar rcs -o 库名.a file.o
+				3.ar t 库名.a(看库里的文件)
+				4.gcc -o file main.c 库.a
+			动态库生成：
+				1.gcc -o file.o -fPIC file.c
+				2.gcc -shared -o libmyshare.so file.o
+				一起gcc -shared -fPIC -o libmyshare file.c
+				3.gcc -o file file.c -L. -lmyshare(再加上这名话export LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH)
+				或者gcc -o file file.c ./libmyshare.so
+	 (2).nm 查看函数符号
+
+	 (3).objcop将目标文件内容进行格式转换
+	 (4).objdump objdump -S -M intel a.out 反汇编
+			或者objdump -d a.out
+	 (5).
+(二)gdb:
+
+
+
+
+(三)make:
+
+
+
+(四)diff patch:
+
+
+
+
+(五)git:
+	diff -u 原文件　目的文件　>　diff.txt
+	原文件　是　--
+	目的文件　是　++
+	1.没有目的文件(生成目的文件方法)
+	cp 原文件　目的文件
+	patch 目的文件名　<　diff.txt
+
+	2.没有原文件(生成原文件名)
+	cp 目的文件　原文件
+	patch -R 原文件名　<　diff.txt
+
