@@ -77,6 +77,13 @@ rpm		rpm2cpio FileName.rpm | cpio -div
 deb		ar p FileName.deb data.tar.gz | tar zxf -
 tar.xz		 xz -d xxx.tar.xz 	     xz -z xxx.tar 
 所有　　　　　　　sEx x FileName.*　　　　　　　　　　　　sEx a FileName.* FileName
+*********************************************************/
+
+
+
+
+
+
 
 	(2).nm 查看函数符号
 
@@ -114,20 +121,21 @@ tar.xz		 xz -d xxx.tar.xz 	     xz -z xxx.tar
 
 (六)mysql:
 	
-update mysql.user set password=password("linux")where user = 'root';
-flush privileges;
+	开始登陆:mysql -u root -p
+	update mysql.user set password=password("linux")where user = 'root';
+	flush privileges;
 
-show databases;用于显示当前存在的数据库；
-create database students;创建一个数据库；
+	show databases;用于显示当前存在的数据库；
+	create database students;创建一个数据库；
 
-use students 使用students数据库;
-create table information (id int , name text , serial text , address text) 创建了一个表;
-show tables 显示表;
-desc(description) information显示表的具体信息;
+	use students 使用students数据库;
+	create table information (id int , name text , serial text , address text) 创建了一个表;
+	show tables 显示表;
+	desc(description) information显示表的具体信息;
 
-insert into information values(1,"wangkang","123","zhonggou");插入一个信息;
+	insert into information values(1,"wangkang","123","zhonggou");插入一个信息;
 
 
-select * from information;从列表中获取信息;
-select name form information where name=wang;显示姓名为wang的人的姓名;
+	select * from information;从列表中获取信息;
+	select name form information where name=wang;显示姓名为wang的人的姓名;
 
