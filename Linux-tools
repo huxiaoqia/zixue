@@ -28,7 +28,57 @@
 				一起gcc -shared -fPIC -o libmyshare file.c
 				3.gcc -o file file.c -L. -lmyshare(再加上这名话export LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH)
 				或者gcc -o file file.c ./libmyshare.so
-	 (2).nm 查看函数符号
+	 
+source +filename //重启
+
+
+
+
+/****************************************
+1.预处理：　gcc -E filename.c -o filename.i
+2.编译阶段：gcc -S filename.i -o filename.s
+3.汇编阶段；gcc -c filename.s -o filename.o
+4.链接阶段；gcc filename.o -o filename
+
+
+1.数学库必须创建可执行文件的链接。在linux/Unix，只要加-lm至
+gcc filename.c -o filename -lm
+数学函数库libm.so和-l命令选项lib前缀和.a或.so后缀。 
+
+2. 这是一个可能的一个链接错误。 添加-lm切换到指定要对标准C数学库链接（libm），其中有那些函数的定义（头只具有宣言为他们-值得期待补差价）
+
+3. 你需要与链接-lm链接器选项 您需要为
+
+gcc test.c -o test -lm
+
+GCC（不G++）历史不会在默认情况下包括数学函数，同时连接。它也被分离的libc到一个单独的库函数libm。要使用这些功能链接，你必须告知链接器包含库-l链接器选项其次库m-lm。 
+4. 你没有告诉关于数学库的位置，链接器。编译用gcc test.c以邻测试-LM
+
+
+
+
+
+解压大全
+
+格式　　　　　　 解包：　　　　　　　　　　　　打包：
+tar　　　　　　　　　　　　 tar xvf FileName.tar　　　　　　　　tar cvf FileName.tar DirName
+gz　　　　　　　　　　　　　 gunzip FileName.gz　　　　　　　　　　gzip FileName
+tar.gz　　　　　　　　　 tar zxvf FileName.tar.gz　　　　tar zcvf FileName.tar.gz DirName
+bz2		bzip2 -d FileName.bz2	    bzip2 -z FileName
+tar.bz2		tar jxvf FileName.tar.bz2   tar jcvf FileName.tar.bz2 DirName
+bz		bzip2 -d FileName.bz  
+tar.bz		tar jxvf FileName.tar.bz
+Z		uncompress FileName.Z	    compress FileName
+tar.Z		tar Zxvf FileName.tar.Z     tar Zcvf FileName.tar.Z DirName
+zip		unzip FileName.zip 	    zip FileName.zip DirName
+rar		rar x FileName.rar	    rar a FileName.rar DirName
+lha		lha -e FileName.lha	    lha -a FileName.lha FileName
+rpm		rpm2cpio FileName.rpm | cpio -div
+deb		ar p FileName.deb data.tar.gz | tar zxf -
+tar.xz		 xz -d xxx.tar.xz 	     xz -z xxx.tar 
+所有　　　　　　　sEx x FileName.*　　　　　　　　　　　　sEx a FileName.* FileName
+
+	(2).nm 查看函数符号
 
 	 (3).objcop将目标文件内容进行格式转换
 	 (4).objdump objdump -S -M intel a.out 反汇编
@@ -59,4 +109,25 @@
 	2.没有原文件(生成原文件名)
 	cp 目的文件　原文件
 	patch -R 原文件名　<　diff.txt
+
+
+
+(六)mysql:
+	
+update mysql.user set password=password("linux")where user = 'root';
+flush privileges;
+
+show databases;用于显示当前存在的数据库；
+create database students;创建一个数据库；
+
+use students 使用students数据库;
+create table information (id int , name text , serial text , address text) 创建了一个表;
+show tables 显示表;
+desc(description) information显示表的具体信息;
+
+insert into information values(1,"wangkang","123","zhonggou");插入一个信息;
+
+
+select * from information;从列表中获取信息;
+select name form information where name=wang;显示姓名为wang的人的姓名;
 
