@@ -1,0 +1,96 @@
+
+
+在linux下，不管使用的是哪一种super-server，inetd或者xinetd，默认情况下TFTP服务是禁用的，所以要修改文件来开启服务。
+
+根据（1）的安装方法，可以修改文件/etc/xinetd.d/tftp。主要是设置TFTP服务器的根目录，开启服务。修改后的文件如下：
+
+service tftp
+
+{     socket_type            =dgram
+
+       protocol                  =udp
+
+       wait                        =yes
+
+       user                        =root
+
+       server                     =/usr/sbin/in.tftpd
+
+       server_args             =-s /home/lqm/tftpboot -c
+
+       disable                    =no
+
+       per_source             =11
+
+       cps                         =100 2
+
+       flags                       =IPv4
+
+}
+
+说明：修改项server_args= -s     <path>    -c，其中<path>处可以改为你的tftp-server的根目录，参数-s指定chroot，-c指定了可以创建文件。
+
+3. 创建tftp根目录，启动tftp-server。
+
+#mkdir /home/lqm/tftpboot
+
+#chmod o+w       /home/lqm/tftpboot
+
+#service xinetd restart
+
+停止 xinetd：                                              [确定]
+        启动 xinetd：                                              [确定]
+
+这样，tftp-server就启动了。你可以登陆本机测试以下，命令如下：
+
+#tftp     <your-ip-address>
+
+tftp>get <download file>
+
+tftp>put <upload file>
+
+tftp>q
+
+#
+
+
+安装过程中出现的问题及原因
+现象一：
+tftp> get test.log
+Transfer timed out.
+原因：
+tftpd服务没有启动
+
+现象二
+tftp> put test2
+Error code 0: Permission denied
+
+原因：
+运行命令，查看系统日志
+＃tail /var/log/messages
+发现有如下一段文字：
+Mar 24 19:05:26 localhost setroubleshoot:      SELinux is preventing /usr/sbin/in.tftpd (tftpd_t) "write" to tftpboot (tftpdir_t).      For complete SELinux messages. run sealert -l 40a5a6bf-8ded-4bfa-ab6e-fa669a25fc6c
+知道这是是由SELinux造成的，在FC3和FC3以后的FC版本中SELinux默认的都是开启的，现关掉它，修改文件 /etc/sysconfig/selinux，设定其中的
+
+SELINUX=disabled
+
+然后重启电脑即可
+
+或者执行命令 system-config-securitylevel 打开 “安全级别配置”对话框，将SELinux（S）选项中 “强制” 改为“允许”。
+
+现象三：
+tftp> put ex070416.log
+Error code 1: File not found
+原因：
+指定的文件不存在；或tftpd启动参数中没有指定-c选项，允许上传文件
+
+现象四：
+tftp> get test.log
+Error code 2: Only absolute filenames allowed
+原因：
+在/etc/xinetd.d/tftpd中设置的server_args为/etc/default/tftpd-hpa
+cat /etc/default/tftpd-hpa
+#Defaults for tftpd-hpa
+RUN_DAEMON="no"
+OPTIONS="-s /home/tftpd -c -p -U 077 -u tftpd"
+设置的时候只要将server_args＝改为你自己设定的服务器文件夹就行了
