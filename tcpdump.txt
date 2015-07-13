@@ -1,0 +1,31 @@
+install wireshark
+步骤如下
+sudo dpkg-reconfigure wireshark-common
+press the right arrow and enter for yes
+sudo chmod +x /usr/bin/dumpcap
+
+
+1.tcpdump -D
+显示网卡
+2.tcpdump  -i 网卡
+抓取网卡上的信息
+3.tcpdump -c n -w hu.log
+显示n个包到hu.log
+4.tcpdump -r hu.log
+显示代码
+5.tcpdump tcp[udp]
+抓取tcp[udp]包
+6.tcpdump port n
+n=22 ssh
+n=80 网页
+7.tcpdump portrange n1-n2
+抓取n1到n2端口包
+8.tcpdump greater 1000
+9.tcpdump less 100
+10.tcpdump -X
+显示内容
+11.逻辑与或非
+and or not
+
+
+

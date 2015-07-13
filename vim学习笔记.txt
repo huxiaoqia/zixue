@@ -7,6 +7,10 @@ vim -On file1 file2 垂直分割两个半窗口其余的都闭置
 ctrl + w + s == :split水平
 ctrl + w + v == :split垂直
 ctrl + w + w 各个窗口切换
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+      \| exe "normal g'\"" | endif
+  endif
 
 
 :tabnew filename 打开文件file
